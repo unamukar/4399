@@ -1,1 +1,4 @@
-HELLO WORLD
+docker image build --tag secobau/4543-api https://raw.githubusercontent.com/secobau/4543/api/Dockerfile
+docker container run --publish 80:8080 --name api --restart unless-stopped --detach secobau/4543-api
+docker container exec -ti api sh
+curl FPFISSUPP-4543-API-bdc145c8028878e6.elb.eu-central-1.amazonaws.com:8080/C9/
