@@ -1,5 +1,5 @@
-docker image build --tag secobau/4543-c9 https://raw.githubusercontent.com/secobau/4543/c9/Dockerfile
-docker container run --publish 8080:80 --name c9 --detach --restart unless-stopped secobau/4543-c9
+docker image build --tag secobau/4399-c9 https://raw.githubusercontent.com/secobau/4399/c9/Dockerfile
+docker container run --publish 8080:80 --name c9 --detach --restart unless-stopped secobau/4399-c9
 docker container exec -ti c9 sh
-curl FPFISSUPP-4543-C9-4b7a3971775f45e6.elb.eu-central-1.amazonaws.com:8080/API/ -H "Content-Type: application/json" -X POST -d '{"colour":"red", "size":"small"}' ; echo
-curl FPFISSUPP-4543-C9-4b7a3971775f45e6.elb.eu-central-1.amazonaws.com:8080/API/;echo
+curl FPFISSUPP-4399-C9-4b7a3971775f45e6.elb.eu-central-1.amazonaws.com:8080/API/ -H "Content-Type: application/json" -X POST -d '{"colour":"red", "size":"small"}' ; echo
+curl FPFISSUPP-4399-C9-4b7a3971775f45e6.elb.eu-central-1.amazonaws.com:8080/API/;echo
