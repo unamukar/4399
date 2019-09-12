@@ -1,1 +1,2 @@
-HELLO WORLD
+docker image build --tag secobau/4399-ec2api https://raw.githubusercontent.com/secobau/4399/ec2api/Dockerfile
+docker container run --publish 8888:80 --name ec2api --detach --restart unless-stopped secobau/4399-ec2api
