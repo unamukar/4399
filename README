@@ -1,3 +1,0 @@
-docker image build --tag secobau/4399-ec2aws https://raw.githubusercontent.com/secobau/4399/ec2aws/Dockerfile
-
-docker container run --publish 8080:80 --name ec2aws --detach --restart unless-stopped secobau/4399-ec2aws
