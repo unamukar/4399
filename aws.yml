@@ -7,7 +7,7 @@ services:
   volumes:
    - aws2c9-logs:/var/log/nginx
   deploy:
-   replicas: 2
+   replicas: 3
    restart_policy:
     condition: any
  aws2ec:
@@ -17,7 +17,7 @@ services:
   volumes:
    - aws2ec-logs:/var/log/nginx
   deploy:
-   replicas: 2
+   replicas: 3
    restart_policy:
     condition: any
 volumes:
