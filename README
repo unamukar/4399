@@ -1,1 +1,577 @@
-HELLO WORLD
+GITHUB:
+
+https://github.com/secobau/4399
+
+DOCKERHUB:
+
+https://hub.docker.com/r/secobau/4399-c9
+https://hub.docker.com/r/secobau/4399-api
+https://hub.docker.com/r/secobau/4399-aws2c9
+https://hub.docker.com/r/secobau/4399-aws2ec
+https://hub.docker.com/r/secobau/4399-ec2api
+https://hub.docker.com/r/secobau/4399-ec2aws
+
+AWS:
+
+Create VPC
+Name tag - FPFISSUPP-4399
+IPv4 CIDR block - 192.168.0.0/16
+
+Create subnet
+Name tag - FPFISSUPP-4399-API
+VPC - FPFISSUPP-4399
+IPv4 CIDR block - 192.168.1.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create subnet
+Name tag - FPFISSUPP-4399-EC-1
+VPC - FPFISSUPP-4399
+Availability Zone - eu-central-1a
+IPv4 CIDR block - 192.168.2.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create subnet
+Name tag - FPFISSUPP-4399-EC-2
+VPC - FPFISSUPP-4399
+Availability Zone - eu-central-1b
+IPv4 CIDR block - 192.168.3.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create subnet
+Name tag - FPFISSUPP-4399-AWS-1
+VPC - FPFISSUPP-4399
+Availability Zone - eu-central-1a
+IPv4 CIDR block - 192.168.4.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create subnet
+Name tag - FPFISSUPP-4399-AWS-2
+VPC - FPFISSUPP-4399
+Availability Zone - eu-central-1b
+IPv4 CIDR block - 192.168.5.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create subnet
+Name tag - FPFISSUPP-4399-AWS-3
+VPC - FPFISSUPP-4399
+Availability Zone - eu-central-1c
+IPv4 CIDR block - 192.168.6.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create subnet
+Name tag - FPFISSUPP-4399-C9
+VPC - FPFISSUPP-4399
+IPv4 CIDR block - 192.168.7.0/24
+Modify auto-assign IP settings - Auto-assign IPv4 - Enable auto-assign public IPv4 address
+
+Create security group
+Security group name - FPFISSUPP-4399-ALB-EC
+Description - FPFISSUPP-4399-ALB-EC
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-ALB-EC
+Edit inbound rules - Add rule
+Port Range - 80
+IN THE REAL SCENARIO WE WILL CONFIGURE 443 BUT THEN WE NEED TO GET A VALID CERTIFICATE
+Source - 0.0.0.0/0
+IN THE REAL SCENARIO WE WILL PUT HERE THE FIXED PUBLIC IP FROM AWS CLUSTER
+
+Create security group
+Security group name - FPFISSUPP-4399-ALB-AWS
+Description - FPFISSUPP-4399-ALB-AWS
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-ALB-AWS
+Edit inbound rules - Add rule
+Port Range - 80
+IN THE REAL SCENARIO WE WILL CONFIGURE 443 BUT THEN WE NEED TO GET A VALID CERTIFICATE
+Source - 0.0.0.0/0
+IN THE REAL SCENARIO WE WILL PUT HERE THE FIXED PUBLIC IP FROM EC CLUSTER
+
+Create security group
+Security group name - FPFISSUPP-4399-EC
+Description - FPFISSUPP-4399-EC
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-EC
+Edit inbound rules - Add rule
+Type - All traffic
+Source - 192.168.2.0/24,192.168.3.0/24
+
+Create security group
+Security group name - FPFISSUPP-4399-AWS
+Description - FPFISSUPP-4399-AWS
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-AWS
+Edit inbound rules - Add rule
+Type - All traffic
+Source - 192.168.4.0/24,192.168.5.0/24,192.168.6.0/24
+
+Create security group
+Security group name - FPFISSUPP-4399-API
+Description - FPFISSUPP-4399-API
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-API
+Edit inbound rules - Add rule
+Port range - 8080
+Source - 192.168.1.0/24
+
+Create security group
+Security group name - FPFISSUPP-4399-C9
+Description - FPFISSUPP-4399-C9
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-C9
+Edit inbound rules - Add rule
+Port range - 8080
+Source - 192.168.7.0/24
+
+Create security group
+Security group name - FPFISSUPP-4399-SSH
+Description - FPFISSUPP-4399-SSH
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-SSH
+Edit inbound rules - Add rule
+Port range - 22
+Source - 158.169.0.0/16
+
+Create security group
+Security group name - FPFISSUPP-4399-HTTPS
+Description - FPFISSUPP-4399-HTTPS
+VPC - FPFISSUPP-4399
+Name - FPFISSUPP-4399-HTTPS
+Edit inbound rules - Add rule
+Port range - 443
+Source - 158.169.0.0/16
+
+Create internet gateway
+Name tag - FPFISSUPP-4399
+Attach to VPC - FPFISSUPP-4399
+VPC Dashboard - FPFISSUPP-4399 - Main Route table
+Edit routes - Add route
+Destination - 0.0.0.0/0
+Target - Internet gateway - FPFISSUPP-4399
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-API
+Advanced Details - User data - https://github.com/secobau/4399/blob/api/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-API
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-EC
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-EC-1
+Advanced Details - User data - https://github.com/secobau/4399/blob/ec2aws/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-EC-1
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-EC
+FPFISSUPP-4399-API
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-EC-2
+Advanced Details - User data - https://github.com/secobau/4399/blob/ec2aws/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-EC-2
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-EC
+FPFISSUPP-4399-API
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-AWS-1
+Advanced Details - User data - https://github.com/secobau/4399/blob/ucp-1/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-UCP-1
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+FPFISSUPP-4399-API
+Step 7: Review Instance Launch
+Select a key pair - Launch
+Your instances are now launching - View instance
+Description - IPv4 Public IP - Copy to clipboard - SSH connection to the machine
+cat /token_manager
+sudo docker swarm join --token XXXXXXXXXX X.X.X.X:2377 (KEEP THIS TOKEN FOR THE NEXT STEP)
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-AWS-2
+Advanced Details - User data - https://github.com/secobau/4399/blob/ucp-2/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-UCP-2
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+FPFISSUPP-4399-API
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-AWS-3
+Advanced Details - User data - https://github.com/secobau/4399/blob/ucp-3/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-UCP-3
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+FPFISSUPP-4399-API
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-AWS-1
+Advanced Details - User data - https://github.com/secobau/4399/blob/worker-1/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-AWS-1
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-AWS-2
+Advanced Details - User data - https://github.com/secobau/4399/blob/worker-2/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-AWS-2
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-AWS-3
+Advanced Details - User data - https://github.com/secobau/4399/blob/worker-3/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-AWS-3
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI)
+Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type
+t2.micro
+Step 3: Configure Instance Details
+Network - FPFISSUPP-4399
+Subnet - FPFISSUPP-4399-C9
+Advanced Details - User data - https://github.com/secobau/4399/blob/c9/README
+Step 4: Add Storage
+8
+Step 5: Add Tags
+Add tag - Name - FPFISSUPP-4399-C9
+Step 6: Configure Security Group
+Select an existing security group
+FPFISSUPP-4399-SSH
+FPFISSUPP-4399-AWS
+Step 7: Review Instance Launch
+Select a key pair - Launch
+
+Create target group
+Target group name - FPFISSUPP-4399-API
+Target type - Instance
+Protocol - HTTP
+Port - 80
+VPC - FPFISSUPP-4399
+Health check settings
+Protocol - HTTP
+Path - /API
+Create - Edit Target
+FPFISSUPP-4399-API
+Add to registered on port 80 - Save
+
+Create target group
+Target group name - FPFISSUPP-4399-C9
+Target type - Instance
+Protocol - HTTP
+Port - 8080
+VPC - FPFISSUPP-4399
+Health check settings
+Protocol - HTTP
+Path - /
+Create - Edit Target
+FPFISSUPP-4399-C9
+Add to registered on port 8080 - Save
+
+Create target group
+Target group name - FPFISSUPP-4399-EC2API
+Target type - Instance
+Protocol - HTTP
+Port - 8888
+VPC - FPFISSUPP-4399
+Health check settings
+Protocol - HTTP
+Path - /
+Create - Edit Target
+FPFISSUPP-4399-EC-1
+FPFISSUPP-4399-EC-2
+Add to registered on port 8888 - Save
+
+Create target group
+Target group name - FPFISSUPP-4399-AWS2C9
+Target type  - Instance
+Protocol - HTTP
+Port - 8888
+VPC - FPFISSUPP-4399
+Health check settings
+Protocol - HTTP
+Path - /
+Create - Edit Target
+FPFISSUPP-4399-AWS-1
+FPFISSUPP-4399-AWS-2
+FPFISSUPP-4399-AWS-3
+Add to registered on port 8888 - Save
+
+Create target group
+Target group name - FPFISSUPP-4399-EC2AWS
+Target type - Instance
+Protocol - HTTP
+Port - 8080
+VPC - FPFISSUPP-4399
+Health check settings
+Protocol - TCP
+Path - /
+Create - Edit Target
+FPFISSUPP-4399-EC-1
+FPFISSUPP-4399-EC-2
+Add to registered on port 8888 - Save
+
+Create target group
+Target group name - FPFISSUPP-4399-AWS2EC
+Target type - Instance
+Protocol - HTTP
+Port - 8080
+VPC - FPFISSUPP-4399
+Health check settings
+Protocol - TCP
+Path - /
+Create - Edit Target
+FPFISSUPP-4399-AWS-1
+FPFISSUPP-4399-AWS-2
+FPFISSUPP-4399-AWS-3
+Add to registered on port 8888 - Save
+
+Create Load Balancer - Create Network Load Balancer
+Step 1: Configure Load Balancer
+Basic Configuration
+Name - FPFISSUPP-4399-API
+Scheme - internal
+Listeners
+Load Balancer Protocol - TCP
+Load Balancer Port - 8080
+Availability Zones - VPC - FPFISSUPP-4399
+Availability Zones - eu-central-1b - Select a subnet - FPFISSUPP-4399-API
+Tags - Name - FPFISSUPP-4399-API
+Step 2: Configure Security Settings
+Step 3: Configure Routing
+Target group - Existing target group
+Name - FPFISSUPP-4399-EC2AWS
+Target type - Instance
+Protocol - TCP
+Port - 8080
+Health checks
+Protocol - TCP
+Step 4: Register Targets
+Step 5: Review - Create
+
+Create Load Balancer - Create Network Load Balancer
+Step 1: Configure Load Balancer
+Basic Configuration
+Name - FPFISSUPP-4399-C9
+Scheme - internal
+Listeners
+Load Balancer Protocol - TCP
+Load Balancer Port - 8080
+Availability Zones - VPC - FPFISSUPP-4399
+Availability Zones - eu-central-1b - Select a subnet - FPFISSUPP-4399-C9
+Tags - Name - FPFISSUPP-4399-C9
+Step 2: Configure Security Settings
+Step 3: Configure Routing
+Target group - Existing target group
+Name - FPFISSUPP-4399-AWS2EC
+Target type - Instance
+Protocol - TCP
+Port - 8080
+Health checks
+Protocol - TCP
+Step 4: Register Targets
+Step 5: Review - Create
+
+Create Load Balancer - Create Application Load Balancer
+Step 1: Configure Load Balancer
+Basic Configuration
+Name - FPFISSUPP-4399-EC
+Scheme - internet-facing
+IP address type - ipv4
+Listeners
+Load Balancer Protocol - HTTP
+Load Balancer Port - 80
+Availability Zones - VPC - FPFISSUPP-4399
+Availability Zones - eu-central-1a - Select a subnet - FPFISSUPP-4399-EC-1
+Availability Zones - eu-central-1b - Select a subnet - FPFISSUPP-4399-EC-2
+Tags - Name - FPFISSUPP-4399-EC
+Step 2: Configure Security Settings
+Step 3: Configure Security Groups
+Assign a security group - Select an existing security group - FPFISSUPP-4399-AWS
+Step 4: Configure Routing
+Target group - Existing target group
+Name - FPFISSUPP-4399-API
+Target type - Instance
+Protocol - TCP
+Port - 80
+Health checks
+Protocol - TCP
+Path - /API
+Step 5: Register Targets
+Step 6: Review - Create
+Listeners
+Edit - Delete Default action
+Add action - Return fixed response
+Response code - 403
+Validate - Update
+Back to Load Balancer - View/edit rules - Add rules
+Insert Rule - Add condition - Path
+Path is - /API/*
+Validate
+Add action - Forward to - FPFISSUPP-4399-EC2API
+Validate - Save
+Insert Rule - Add condition - Http header
+Authentication is - Basic dXNlcjpwYXNzd29yZA==
+Validate
+Add action - Forward to - FPFISSUPP-4399-API
+Validate - Save
+
+Create Load Balancer - Create Application Load Balancer
+Step 1: Configure Load Balancer
+Basic Configuration
+Name - FPFISSUPP-4399-AWS
+Scheme - internet-facing
+IP address type - ipv4
+Listeners
+Load Balancer Protocol - HTTP
+Load Balancer Port - 80
+Availability Zones - VPC - FPFISSUPP-4399
+Availability Zones - eu-central-1a - Select a subnet - FPFISSUPP-4399-AWS-1
+Availability Zones - eu-central-1b - Select a subnet - FPFISSUPP-4399-AWS-2
+Availability Zones - eu-central-1c - Select a subnet - FPFISSUPP-4399-AWS-3
+Tags - Name - FPFISSUPP-4399-AWS
+Step 2: Configure Security Settings
+Step 3: Configure Security Groups
+Assign a security group - Select an existing security group - FPFISSUPP-4399-EC
+Step 4: Configure Routing
+Target group - Existing target group
+Name - FPFISSUPP-4399-C9
+Target type - Instance
+Protocol - TCP
+Port - 8080
+Health checks
+Protocol - TCP
+Path - /
+Step 5: Register Targets
+Step 6: Review - Create
+Listeners
+Edit - Delete Default action
+Add action - Return fixed response
+Response code - 403
+Validate - Update
+Back to Load Balancer - View/edit rules - Add rules 
+Insert Rule - Add condition - Path
+Path is - /C9/*
+Validate - Add action
+Forward to - FPFISSUPP-4399-AWS2C9
+Validate - Save
+Insert Rule - Add condition - Http header
+Authentication is - Basic dXNlcjpwYXNzd29yZA==
+Validate - Add action
+Forward to - FPFISSUPP-4399-C9
+Validate - Save
