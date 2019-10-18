@@ -211,38 +211,6 @@ Step 1: Choose an Amazon Machine Image (AMI) - Amazon Linux 2 AMI (HVM), SSD Vo
 Step 2: Choose an Instance Type - t2.micro
 Step 3: Configure Instance Details
 Network - 4399
-Subnet - 4399-EC1
-Advanced Details
-User data - https://github.com/secobau/4399/blob/ec2api/README.md - https://github.com/secobau/4399/blob/ec2aws/README.md
-Step 4: Add Storage - 8
-Step 5: Add Tags - Add tag - Name - 4399-EC1
-Step 6: Configure Security Group - Select an existing security group
-4399-SSH
-4399-EC
-4399-API
-Step 7: Review Instance Launch - Select a key pair - Launch
-
-Launch Instance
-Step 1: Choose an Amazon Machine Image (AMI) - Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
-Step 2: Choose an Instance Type - t2.micro
-Step 3: Configure Instance Details
-Network - 4399
-Subnet - 4399-EC2
-Advanced Details
-User data - https://github.com/secobau/4399/blob/ec2api/README.md - https://github.com/secobau/4399/blob/ec2aws/README.md
-Step 4: Add Storage - 8
-Step 5: Add Tags - Add tag - Name - 4399-EC2
-Step 6: Configure Security Group - Select an existing security group
-4399-SSH
-4399-EC
-4399-API
-Step 7: Review Instance Launch - Select a key pair - Launch
-
-Launch Instance
-Step 1: Choose an Amazon Machine Image (AMI) - Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
-Step 2: Choose an Instance Type - t2.micro
-Step 3: Configure Instance Details
-Network - 4399
 Subnet - 4399-AWS1
 Advanced Details
 User data - https://github.com/secobau/4399/blob/leader/README.md
@@ -533,6 +501,38 @@ Path is - /C9/*
 Validate - Add action
 Forward to - 4399-AWS2C9
 Validate - Save
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI) - Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type - t2.micro
+Step 3: Configure Instance Details
+Network - 4399
+Subnet - 4399-EC1
+Advanced Details
+User data - https://github.com/secobau/4399/blob/ec2api/README.md - https://github.com/secobau/4399/blob/ec2aws/README.md
+Step 4: Add Storage - 8
+Step 5: Add Tags - Add tag - Name - 4399-EC1
+Step 6: Configure Security Group - Select an existing security group
+4399-SSH
+4399-EC
+4399-API
+Step 7: Review Instance Launch - Select a key pair - Launch
+
+Launch Instance
+Step 1: Choose an Amazon Machine Image (AMI) - Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
+Step 2: Choose an Instance Type - t2.micro
+Step 3: Configure Instance Details
+Network - 4399
+Subnet - 4399-EC2
+Advanced Details
+User data - https://github.com/secobau/4399/blob/ec2api/README.md - https://github.com/secobau/4399/blob/ec2aws/README.md
+Step 4: Add Storage - 8
+Step 5: Add Tags - Add tag - Name - 4399-EC2
+Step 6: Configure Security Group - Select an existing security group
+4399-SSH
+4399-EC
+4399-API
+Step 7: Review Instance Launch - Select a key pair - Launch
 
 Create Load Balancer - Create Application Load Balancer
 Step 1: Configure Load Balancer - Basic Configuration
