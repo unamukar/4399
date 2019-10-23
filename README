@@ -111,7 +111,7 @@ VPC - 4399
 Create - The following security group was created: Security Group ID
 Click on the Security Group ID
 Actions - Add/Edit Tags
-Create Tag - Name - 4399-EC
+Create Tag - Name - 4399-AWS
 Edit inbound rules - Add rule
 Type - All traffic
 Source - 192.168.4.0/24,192.168.5.0/24,192.168.6.0/24
