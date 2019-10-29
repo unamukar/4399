@@ -5,12 +5,12 @@ https://github.com/secobau/4399
 
 DOCKERHUB:
 
-https://hub.docker.com/r/secobau/4399-c9
-https://hub.docker.com/r/secobau/4399-api
-https://hub.docker.com/r/secobau/4399-aws2c9
-https://hub.docker.com/r/secobau/4399-aws2ec
-https://hub.docker.com/r/secobau/4399-ec2api
-https://hub.docker.com/r/secobau/4399-ec2aws
+https://hub.docker.com/r/unamuno/4399-c9
+https://hub.docker.com/r/unamuno/4399-api
+https://hub.docker.com/r/unamuno/4399-aws2c9
+https://hub.docker.com/r/unamuno/4399-aws2ec
+https://hub.docker.com/r/unamuno/4399-ec2api
+https://hub.docker.com/r/unamuno/4399-ec2aws
 
 
 AWS:
@@ -205,7 +205,7 @@ Subnet - 4399-API
 Network interfaces
 Primary IP - 192.168.1.170
 Advanced Details
-User data - https://github.com/secobau/4399/blob/api/README.md
+User data - https://github.com/unamukar/4399/blob/api/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-API
 Step 6: Configure Security Group - Select an existing security group
@@ -222,7 +222,7 @@ Subnet - 4399-C9
 Network interfaces
 Primary IP - 192.168.7.95
 Advanced Details
-User data - https://github.com/secobau/4399/blob/c9/README.md
+User data - https://github.com/unamukar/4399/blob/c9/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-C9
 Step 6: Configure Security Group - Select an existing security group
@@ -237,7 +237,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-AWS1
 Advanced Details
-User data - https://github.com/secobau/4399/blob/leader/README.md
+User data - https://github.com/unamukar/4399/blob/leader/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-UCP1
 Step 6: Configure Security Group - Select an existing security group
@@ -257,7 +257,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-AWS2
 Advanced Details
-User data - https://github.com/secobau/4399/blob/manager/README.md
+User data - https://github.com/unamukar/4399/blob/manager/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-UCP2
 Step 6: Configure Security Group - Select an existing security group
@@ -272,7 +272,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-AWS3
 Advanced Details
-User data - https://github.com/secobau/4399/blob/manager/README.md
+User data - https://github.com/unamukar/4399/blob/manager/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-UCP3
 Step 6: Configure Security Group - Select an existing security group
@@ -287,7 +287,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-AWS1
 Advanced Details
-User data - https://github.com/secobau/4399/blob/worker/README.md
+User data - https://github.com/unamukar/4399/blob/worker/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-AWS1
 Step 6: Configure Security Group - Select an existing security group
@@ -303,7 +303,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-AWS2
 Advanced Details
-User data - https://github.com/secobau/4399/blob/worker/README.md
+User data - https://github.com/unamukar/4399/blob/worker/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-AWS2
 Step 6: Configure Security Group - Select an existing security group
@@ -319,7 +319,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-AWS3
 Advanced Details
-User data - https://github.com/secobau/4399/blob/worker/README.md
+User data - https://github.com/unamukar/4399/blob/worker/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-AWS3
 Step 6: Configure Security Group - Select an existing security group
@@ -486,7 +486,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-EC1
 Advanced Details
-User data - https://github.com/secobau/4399/blob/ec2api/README.md - https://github.com/secobau/4399/blob/ec2aws/README.md
+User data - https://github.com/unamukar/4399/blob/ec2api/README.md - https://github.com/unamukar/4399/blob/ec2aws/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-EC1
 Step 6: Configure Security Group - Select an existing security group
@@ -502,7 +502,7 @@ Step 3: Configure Instance Details
 Network - 4399
 Subnet - 4399-EC2
 Advanced Details
-User data - https://github.com/secobau/4399/blob/ec2api/README.md - https://github.com/secobau/4399/blob/ec2aws/README.md
+User data - https://github.com/unamukar/4399/blob/ec2api/README.md - https://github.com/unamukar/4399/blob/ec2aws/README.md
 Step 4: Add Storage - 8
 Step 5: Add Tags - Add tag - Name - 4399-EC2
 Step 6: Configure Security Group - Select an existing security group
@@ -602,15 +602,15 @@ Validate - Save
 
 Edit the configuration file for the AWS2EC reverse proxy
 Go to the Github repository and modify the line number 11 of the following file:
-https://github.com/secobau/4399/blob/aws2ec/aws2ec.conf
+https://github.com/unamukar/4399/blob/aws2ec/aws2ec.conf
 Check in Dockerhub until the build with the corrected image has finished:
-https://cloud.docker.com/repository/docker/secobau/4399-aws2ec/builds
+https://cloud.docker.com/repository/docker/unamukar/4399-aws2ec/builds
 
 Deploy AWS application
 Connect to instance: 4399-UCP1
 Execute the following commands to deploy the application:
 sudo yum install -y git
-git clone --single-branch --branch leader https://github.com/secobau/4399.git
+git clone --single-branch --branch leader https://github.com/unamukar/4399.git
 sudo docker stack deploy --compose-file 4399/aws.yml AWS
 
 Initialize API with values
