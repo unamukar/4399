@@ -1,6 +1,6 @@
 FROM alpine/git AS git
 WORKDIR /app
-RUN git clone --single-branch --branch aws2ec https://github.com/secobau/4399
+RUN git clone --single-branch --branch aws2ec https://github.com/unamukar/4399
 
 FROM nginx:stable-alpine
 WORKDIR /etc/nginx/conf.d/
