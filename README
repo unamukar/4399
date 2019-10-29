@@ -475,9 +475,9 @@ Disable the following rule: Allow Users To Schedule On All Nodes, Including UCP 
 
 Edit the configuration file for the EC2AWS reverse proxy
 Go to the Github repository and modify the line number 11 of the following file:
-https://github.com/secobau/4399/blob/ec2aws/ec2aws.conf
+https://github.com/unamukar/4399/blob/ec2aws/ec2aws.conf
 Check in Dockerhub until the build with the corrected image has finished:
-https://cloud.docker.com/repository/docker/secobau/4399-ec2aws/builds
+https://cloud.docker.com/repository/docker/unamukar/4399-ec2aws/builds
 
 Launch Instance
 Step 1: Choose an Amazon Machine Image (AMI) - Amazon Linux 2 AMI (HVM), SSD Volume Type - ami-00aa4671cbf840d82 (64-bit x86) / ami-0226a38317e2aca0d (64-bit Arm)
