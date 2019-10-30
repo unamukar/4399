@@ -1,6 +1,6 @@
 FROM alpine/git AS git
 WORKDIR /app
-RUN git clone https://github.com/secobau/nodejs
+RUN git clone https://github.com/unamukar/nodejs
 
 FROM node:alpine
 WORKDIR /app
