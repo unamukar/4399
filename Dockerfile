@@ -1,6 +1,6 @@
 FROM alpine/git AS git
 WORKDIR /app
-RUN git clone --single-branch --branch ec2api https://github.com/secobau/4399
+RUN git clone --single-branch --branch ec2api https://github.com/unamukar/4399
 
 FROM nginx:stable-alpine AS utils
 RUN apk add apache2-utils
